@@ -8,7 +8,7 @@ This repository presents a complete, serverless Retrieval-Augmented Generation (
 
 The basic architecture of the deployed solution is based on the following services and components:
 - **LLM Language Model:** Sovereign Polish model [Bielik](https://ollama.com/SpeakLeash/bielik-4.5b-v3.0-instruct) characterized by a very good understanding of the Polish language and Polish cultural context. Running in the Cloud Run service, it is responsible for the final generation of a natural response for the user.
-- **Embedding Model:** Efficient [EmbeddingGemma](https://deepmind.google/models/gemma/embeddinggemma/) model running in the Cloud Run service, used for quick conversion of text (user queries and target documents) into vector representation.
+- **Embedding Model:** Efficient [EmbeddingGemma 2](https://ollama.com/library/embeddinggemma-2) model running in the Cloud Run service, used for quick conversion of text (user queries and target documents) into vector representation.
 - **Vector Knowledge Base:** Scalable data warehouse [BigQuery](https://cloud.google.com/bigquery?hl=en) with the Vector Search mechanism providing vector search of semantically matched fragments from among millions of source documents.
 - **Logic and application server:** Application written in Python (with the FastAPI framework), providing a Web UI graphical overlay and public API tying the platforms together.
 
@@ -21,7 +21,7 @@ The sample source code contained in this repository allows in particular to:
 
 * Configure your own instance of the [Bielik](https://ollama.com/SpeakLeash/bielik-4.5b-v3.0-instruct) model based on the [Ollama](https://ollama.com/) engine
 
-* Configure your own instance of the [EmbeddingGemma](https://deepmind.google/models/gemma/embeddinggemma/) embedding model based on [Ollama](https://ollama.com/)
+* Configure your own instance of the [EmbeddingGemma 2](https://ollama.com/library/embeddinggemma-2) embedding model based on [Ollama](https://ollama.com/)
 
 * Run both of the above models on a serverless platform: [Cloud Run](https://cloud.google.com/run?hl=en)
 
@@ -118,7 +118,7 @@ The sample source code contained in this repository allows in particular to:
    cd ..
    ```
 
-## 4. Running the EmbeddingGemma embedding model on Cloud Run
+## 4. Running the EmbeddingGemma 2 embedding model on Cloud Run
 
 1. Analyze the script `embedding_model/cloud_run.sh`
 
@@ -197,6 +197,9 @@ The project uses BigQuery with the Vector Search function as a database with con
 2. Check in Google Cloud Console -> BigQuery if the records appeared in the table `rag_dataset.hotel_rules` 
    *(The data indexing process to Vector Search may take a moment, however, text data is visible immediately).*
 
+>[!WARNING]
+>Vectors produced by different embedding models are not compatible with each other. If you change the embedding model (e.g. from `embeddinggemma` to `embeddinggemma-2`), clear the table (`TRUNCATE TABLE rag_dataset.hotel_rules`) and ingest the data again, otherwise vector search will return wrong results.
+
 3. Execute a test query using RAG, asking about information from the uploaded rules
    
    Question about the frequency of pool chlorine measurement:
@@ -227,7 +230,7 @@ The application provides a simple API created using the *FastAPI* framework, all
 The application defines the following paths in the file `orchestration/main.py`:
 
 * `GET /` – serves the static file of the user interface (`index.html`).
-* `POST /ingest` – accepts a CSV file and indexes the information contained in it as vectors in BigQuery (using the `EmbeddingGemma` embedding model).
+* `POST /ingest` – accepts a CSV file and indexes the information contained in it as vectors in BigQuery (using the `EmbeddingGemma 2` embedding model).
 * `POST /ask` – the main RAG endpoint: 
   - converts the query from text to vector,
   - semantically searches for the 3 most similar vector documents in the BigQuery table,
