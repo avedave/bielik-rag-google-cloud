@@ -58,12 +58,12 @@ The sample source code contained in this repository allows in particular to:
 
 7. Clone the repository with the sample code and go to the newly created directory
    ```bash
-   git clone https://github.com/avedave/eskadra-bielik-misja2
+   git clone https://github.com/avedave/bielik-rag-google-cloud
    ```
 
 8. Go to the directory with the source code
    ```bash
-   cd eskadra-bielik-misja2
+   cd bielik-rag-google-cloud
    ```
 
 9. Start the editor in the directory with the source code
