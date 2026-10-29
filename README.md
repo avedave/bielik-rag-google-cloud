@@ -1,4 +1,4 @@
-# Bielik Squadron - Mission 2 - RAG based on Bielik model and Google Cloud
+# RAG based on Bielik model and Google Cloud
 
 Sovereign and reliable AI - From company documents to an intelligent knowledge base based on the Bielik model and Google Cloud.
 
