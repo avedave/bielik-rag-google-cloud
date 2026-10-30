@@ -2,6 +2,9 @@
 
 Sovereign and reliable AI - From company documents to an intelligent knowledge base based on the Bielik model and Google Cloud.
 
+>[!TIP]
+>Check the official Google codelab which uses Antigravity CLI to deploy the same solution: [g.dev/cloud/bielik-rag](https://g.dev/cloud/bielik-rag)
+
 ## About the project
 
 This repository presents a complete, serverless Retrieval-Augmented Generation (RAG) solution deployed in Google Cloud. The main goal of the application is to provide an efficient and sovereign intelligent assistant capable of answering user questions based on a dedicated knowledge base (e.g., internal documents, regulations).
