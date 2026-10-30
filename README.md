@@ -1,6 +1,6 @@
 # RAG based on Bielik model and Google Cloud
 
-Sovereign and reliable AI - From company documents to an intelligent knowledge base based on the Bielik model and Google Cloud.
+Sovereign and reliable AI - From company documents to an intelligent knowledge base based on the [Bielik](https://www.bielik.ai/en) model and Google Cloud.
 
 >[!TIP]
 >Check the official Google codelab which uses Antigravity CLI to deploy the same solution: [g.dev/cloud/bielik-rag](https://g.dev/cloud/bielik-rag)
